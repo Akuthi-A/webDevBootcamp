@@ -17,6 +17,27 @@ TODO: Change the background color for each device
     body {
       background-color: aquamarine;
     }
+
+    @media (319px <= width <= 480px) {
+      body {
+        background-color: lightsalmon;
+      }
+    }
+    @media (481px <= width <= 1200px) {
+      body {
+        background-color: rgb(88, 208, 224);
+      }
+    }
+    @media (1201px <= width <= 1600px) {
+      body {
+        background-color: rgb(0, 255, 0);
+      }
+      @media (min-width: 1601px) {
+      body {
+        background-color: seagreen;
+      }
+    }
+    }
   </style>
 </head>
 
