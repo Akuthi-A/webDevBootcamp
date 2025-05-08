@@ -40,3 +40,8 @@
   align-self: flex-end;
   /* height: ; */
 }
+
+.inja img{
+  height: 160px;
+  border-radius: 100%;
+}
