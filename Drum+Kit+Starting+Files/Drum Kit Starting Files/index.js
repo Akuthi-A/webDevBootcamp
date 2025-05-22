@@ -5,7 +5,7 @@ function handleClick() {
 
     let thisDrum = this.textContent;
     // alert(thisDrum);
-
+    buttonAnimation(thisDrum)
     makeSound(thisDrum);
 }
 
@@ -18,7 +18,10 @@ buttons.forEach(element => {
 
 document.addEventListener("keydown", function(event) {
     // alert(event.key);
+    
+    buttonAnimation(event.key);
     makeSound(event.key);
+    
     
 })
 
@@ -48,4 +51,13 @@ function makeSound(key) {
         let sound = new Audio('./sounds/tom-4.mp3');
         sound.play();
     }
+}
+
+
+function buttonAnimation(currentKey) {
+    let activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed"), 2;
+    setTimeout(function () {
+        activeButton.classList.remove("pressed")
+    }, 100);
 }
