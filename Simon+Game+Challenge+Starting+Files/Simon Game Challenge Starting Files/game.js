@@ -66,6 +66,14 @@ jQuery(document).on("keydown", function(o) {
 function checkAnswer(currentLevel) {
     if (userClickedPattern[currentLevel] == gamePattern[currentLevel]) {
         console.log("Success");
+        for (let i = 0;  i < currentLevel; i++) {
+            if (userClickedPattern[i] == gamePattern[i]) {
+                console.log("Success in");
+            }
+            else {
+                console.log("noooooooo!!")
+            }
+        }
     } else {
         console.log("wrong");
     }
