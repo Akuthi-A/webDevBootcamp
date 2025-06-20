@@ -15,18 +15,21 @@ let blink = jQuery("#"+randomChosenColour).fadeOut(100).fadeIn(100).fadeOut(100)
 function playAudio(name) {
     let soundUrl = name + ".mp3";
     // alert(soundUrl);
-    alert(name)
+    // alert(name)
     let audio = new Audio("./sounds/"+soundUrl);
     audio.play();
-    blink.attr("onclick", "playAudio()")
+    blink.attr("onclick", "playAudio("+name+")");
 }
-playAudio()
+
 
 
 jQuery(".btn").click(function () {
     let userChosenColour = this.id;
     userClickedPattern.push(userChosenColour);
     console.log(userClickedPattern);
+
+    playAudio(this.id)
+
 
     
 })
