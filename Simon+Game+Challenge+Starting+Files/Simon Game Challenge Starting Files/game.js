@@ -4,9 +4,15 @@ let buttonColours = ["red", "blue", "green", "yellow"];
 let level = 0
 let start = false;
 
+function startOver() {
+    gamePattern = [];
+    level = 0
+    start = false;
+}
 
 
-jQuery(document).on("keydown", function(o) {
+
+jQuery(document).on("keydown", function() {
     if (!start) {
         nextSequence();
         start = true;
@@ -16,12 +22,10 @@ jQuery(document).on("keydown", function(o) {
 
 
 jQuery(".btn").click(function () {
-    let lastElement = userClickedPattern.length - 1;
+    let lastElement = userClickedPattern.length;
     let userChosenColour = this.id;
     userClickedPattern.push(userChosenColour);
 
-    console.log(userClickedPattern);
-    console.log(gamePattern);
 
     animatePress(userChosenColour);
     checkAnswer(lastElement);
@@ -32,7 +36,7 @@ jQuery(".btn").click(function () {
 
 function nextSequence() {
     userClickedPattern = [];
-    level += 1;
+    
 
     let randomNumber = Math.floor(Math.random() * 4);
     let randomChosenColour = buttonColours[randomNumber];
@@ -42,7 +46,7 @@ function nextSequence() {
     jQuery("h1").text("Level "+ level)
     
 
-
+    level += 1;
     jQuery("#"+randomChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
     playAudio(randomChosenColour);
@@ -52,8 +56,6 @@ function nextSequence() {
 
 function playAudio(name) {
     let soundUrl = name + ".mp3";
-    // alert(soundUrl);
-    // alert(name)
     let audio = new Audio("./sounds/"+soundUrl);
     audio.play();
 }
@@ -72,7 +74,12 @@ function animatePress(currentColour) {
 
 function checkAnswer(currentLevel) {
     if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
+        console.log("Level: " + currentLevel);
         console.log("Success");
+        console.log("user: ", userClickedPattern);
+        console.log("comp: ", gamePattern);
+        console.log("clicked: " + userClickedPattern[currentLevel]);
+        console.log("gameP: " + gamePattern[currentLevel]);
 
         if (userClickedPattern.length === gamePattern.length) {
             setTimeout(function() {
@@ -81,5 +88,19 @@ function checkAnswer(currentLevel) {
         }
     } else {
         console.log("wrong");
+        let wrong = new Audio("./sounds/wrong.mp3");
+        wrong.play();
+
+        let body = jQuery("body");
+        body.addClass("game-over");
+
+        setTimeout(function() {
+            body.removeClass("game-over");
+        }, 200)
+
+        jQuery("h1").text("Game Over, Press Any Key to Restart");
+        startOver();
     }
 }
+
+
