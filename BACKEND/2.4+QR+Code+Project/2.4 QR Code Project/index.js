@@ -5,16 +5,22 @@
 */
 
 import inquirer from 'inquirer';
+import qr from 'qr-image'
+import fs from 'fs'
 
 inquirer.prompt([
     {
         type: "input",
         name: "urlQR",
-        message: "Enter a url you want to turn to QR code. "
+        message: "Enter a url you want to turn to QR code. (e.g. -> www.google.com): "
     }
 ]).then((name) => {
-    console.log(name.urlQR);
+    let img = qr.image(name.urlQR, {
+        type:'png',
+        parse_url: true
+    })
+    img.pipe(fs.createWriteStream("QR_CODE.png"));
+    console.log(name);
 }).catch(error => {
   console.error(error);
 });
-console.log("something??");
