@@ -22,7 +22,7 @@ jQuery(document).on("keydown", function() {
 
 
 jQuery(".btn").click(function () {
-    let lastElement = userClickedPattern.length;
+    let lastElement = userClickedPattern.length - 1;
     let userChosenColour = this.id;
     userClickedPattern.push(userChosenColour);
 
@@ -43,10 +43,12 @@ function nextSequence() {
     gamePattern.push(randomChosenColour);
 
     let idSelect = "#" + randomChosenColour;
+
+    level += 1;
     jQuery("h1").text("Level "+ level)
     
 
-    level += 1;
+    
     jQuery("#"+randomChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
     playAudio(randomChosenColour);
