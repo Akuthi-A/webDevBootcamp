@@ -28,6 +28,7 @@ dbClient.query( "SELECT * FROM visited_countries", (err, res) => {
     return;
   }
   visited_countries = res.rows;
+  console.log(visited_countries);
   for (let country of visited_countries) {
     country_codes.push(country.country_code);
   }
