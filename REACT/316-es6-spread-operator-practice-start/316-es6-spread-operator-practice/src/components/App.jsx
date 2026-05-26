@@ -1,7 +1,5 @@
 import React from "react";
-import ListItems from "./ListItem";
-import Button from "./Button";
-import Input from "./Input";
+
 
 function App() {
 
@@ -11,13 +9,12 @@ function App() {
   
   function handleInput(event) {
     const newItem = event.target.value;
-    setItem(newItem)
-    console.log(newItem);
+    setItem(newItem);
   }
 
   function addItem() {
-    setListItem([...listItem, item])
-    console.log(listItem);
+    setListItem([...listItem, item]);
+    setItem("");
   }
   
 
@@ -39,7 +36,6 @@ function App() {
               {item}
             </li>
           ))}
-          {/* <li>code something</li> */}
         </ul>
       </div>
     </div>
