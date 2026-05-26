@@ -5,6 +5,7 @@ function App() {
 
   const [item, setItem] = React.useState("");
   const [listItem, setListItem] = React.useState([]);
+  const [isDone, setDone] = React.useState(false);
 
   
   function handleInput(event) {
@@ -15,6 +16,9 @@ function App() {
   function addItem() {
     setListItem([...listItem, item]);
     setItem("");
+  }
+
+  function handleDoneTask() {
   }
   
 
@@ -32,8 +36,16 @@ function App() {
       <div>
         <ul>
           {listItem.map((item) => (
-            <li key={item}>
-              {item}
+            <li key={item} style={{
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center',
+            }}>
+             <span>{item}</span> 
+
+              <button onClick={handleDoneTask}>
+                <span>done</span>
+              </button>
             </li>
           ))}
         </ul>
@@ -42,4 +54,8 @@ function App() {
   );
 }
 
+
 export default App;
+
+
+// style={{ textDecoration: isDone ? 'line-through' : 'none' }}
